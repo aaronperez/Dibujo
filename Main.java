@@ -45,8 +45,6 @@ public class Main extends ActionBarActivity implements ColorPickerDialog.OnColor
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(),imageUri);
                     Vista.mapaDeBits=bitmap;
                     iniciarCanvas();
-
-                    Vista.lienzoFondo.drawBitmap(bitmap, 0, 0,Vista.pincel);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -83,7 +81,7 @@ public class Main extends ActionBarActivity implements ColorPickerDialog.OnColor
         alert.setView(vista);
         alert.setPositiveButton(R.string.aceptar, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
-                Vista.pincel.setXfermode(null);
+                desactivarGoma();
                 RadioGroup rg = (RadioGroup) vista.findViewById(R.id.rgDedos);
                 int rbID = rg.getCheckedRadioButtonId();
                 View radioButton = rg.findViewById(rbID);

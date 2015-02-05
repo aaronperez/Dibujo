@@ -19,16 +19,21 @@ import java.util.List;
 
 public class Vista extends View {
 
+    //Pincel
     public static Paint pincel;
+    //Lienzo
+    public static Bitmap mapaDeBits;
+    public static Canvas lienzoFondo;
+    //Variables de control
     public static int metodo=3;
     public static int dedoMax=2;
     public static boolean trama=false;
     private float x0=-1,y0=-1,xi=-1,yi=-1;
-    //private List<Recta> rectas = new ArrayList();
-    public static Bitmap mapaDeBits;
-    public static Canvas lienzoFondo;
+    //circulos
     private float radio;
+    //rectas
     private Path rectaPoligonal = new Path();
+    //rectangulo
     private Rect rectangulo=new Rect(-1,-1,-1,-1);
     //MultiTouch
     private Path[] rutaPath=new Path[3];
@@ -63,7 +68,7 @@ public class Vista extends View {
                 lienzo.drawCircle(x0,y0,radio,pincel);
                 break;
             case 3:
-                lienzoFondo.drawPath(rectaPoligonal,pincel);
+                lienzo.drawPath(rectaPoligonal,pincel);
                 break;
             case 4:
                 lienzo.drawRect(rectangulo, pincel);
@@ -241,15 +246,10 @@ public class Vista extends View {
         return true;
     }
 
-    public class Recta{
-        public float x0,y0,xi,yi;
-
-        public Recta(float x0, float y0, float xi, float yi) {
-            this.x0 = x0;
-            this.y0 = y0;
-            this.xi = xi;
-            this.yi = yi;
-        }
+    public static void grosor(int px){
+        if(px>90)px=90;
+        if(px<1)px=1;
+        pincel.setStrokeWidth(px);
     }
 
     public class Coordenadas{
@@ -262,12 +262,5 @@ public class Vista extends View {
             this.yi = yi;
         }
     }
-
-    public static void grosor(int px){
-        if(px>90)px=90;
-        if(px<1)px=1;
-        pincel.setStrokeWidth(px);
-    }
-
 
 }
